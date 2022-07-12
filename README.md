@@ -1,23 +1,32 @@
 # Ternary_Contour
 Plots a series of 3-dimensional data on a ternary diagram in the form of a contour map.
 
-<!-- ABOUT THE PROJECT -->
-## About The Project
-
-<div align="center">
-
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
 <!-- Options -->
 ## Options
  User can specify the following parameters when calling the function:
  - colour of the colour gradient, according to cmap available options (https://matplotlib.org/stable/tutorials/colors/colormaps.html).
  - the number of contours.
+ - to plot contour lines.
  - the end-members of the plot, which must match the content of the input dataset (systems are: [Si+Al, Mg, Fe], [Si+Al, Mg+Fe, O], or [S, Ni, Fe]).
+
+<!-- Example output -->
+## Example output
+
+<br />
+<div align="center">
+
+[![Product Name Screen Shot][product-screenshot]](https://example.com)
+ 
+ </div>
+
+This figure was generated from the following user-specified options:
+ - dataset = [[A1, B1, C1], [A2, B2, C2], ...[An, Bn, Cn]] where A = Si+Al, B = Fe, and C = Mg at.%
+ - ContLines = 'y'
+ - NumLevels = 8
+ - Colour = 'Blues'
+ - type = 'silicate'
+ 
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- CONTRIBUTING -->
 ## Contributing
