@@ -44,4 +44,4 @@ Associated Institute Link: https://umet.univ-lille.fr/MTP/index.php?lang=fr
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
-[product-screenshot]: images/Example ternary plot.pdf
+[product-screenshot]: images/Example_ternary_plot.pdf
