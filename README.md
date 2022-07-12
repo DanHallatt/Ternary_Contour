@@ -50,7 +50,7 @@ If you have a suggestion that would make this better, please fork the repo and c
 
 Dan Hallatt - daniel.hallatt@univ-lille.fr
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: [https://github.com/DanHallatt/Ternary_Contour](https://github.com/DanHallatt/Ternary_Contour)
 
 Associated Institute Link: https://umet.univ-lille.fr/MTP/index.php?lang=fr
 
