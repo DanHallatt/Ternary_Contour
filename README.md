@@ -21,7 +21,7 @@ Plots a series of 3-dimensional data on a ternary diagram in the form of a conto
 
 This figure was generated from the following user-specified options:
  - dataset = [[A1, B1, C1], [A2, B2, C2], ...[An, Bn, Cn]] where A = Si+Al, B = Fe, and C = Mg at.%
- - ContLines = 'y'
+ - ContLines = 'n'
  - NumLevels = 8
  - Colour = 'Blues'
  - type = 'silicate'
