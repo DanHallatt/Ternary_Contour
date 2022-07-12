@@ -1,6 +1,15 @@
 # Ternary_Contour
 Plots a series of 3-dimensional data on a ternary diagram in the form of a contour map.
 
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+[![Product Name Screen Shot][product-screenshot]](https://example.com)
+
+Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 <!-- Options -->
 ## Options
  User can specify the following parameters when calling the function:
@@ -33,3 +42,6 @@ Project Link: [https://github.com/your_username/repo_name](https://github.com/yo
 Associated Institute Link: https://umet.univ-lille.fr/MTP/index.php?lang=fr
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+
+
+[product-screenshot]: images/Example ternary plot.pdf
