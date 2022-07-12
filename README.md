@@ -1,5 +1,5 @@
 # Ternary_Contour
-Plots a series of 3-dimensional data on a ternary diagram in the form of a contour map.
+Plots a series of 3-dimensional data on a ternary diagram in the form of a contour map. Contours are based on 'spatial'-density of datapoints in the domain of the ternary plot.
 
 <!-- Options -->
 ## Options
