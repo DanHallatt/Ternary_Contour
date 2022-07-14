@@ -56,5 +56,10 @@ Associated Institute Link: https://umet.univ-lille.fr/MTP/index.php?lang=fr
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+<!-- Related repositories -->
+## Related repositories
+- plotting contours of compositions/metrics in 2D: https://github.com/DanHallatt/TwoDim_Contour
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 
 [product-screenshot]: Images/ExampleTernaryPlot.png
