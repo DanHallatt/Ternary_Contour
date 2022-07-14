@@ -18,7 +18,7 @@ import math
 
 #   A.2) "triplot" : plots static ternary plot of raw data.
 
-def Ternary_Contour(dataset, type, NumLevels, ContLines, FigureSavePath, FileName, Colour, ContLines, WhiteCutoff=0):
+def Ternary_Contour(dataset, type, NumLevels, ContLines, FigureSavePath, FileName, Colour, WhiteCutoff, ContourValues):
     """ Uses matplotlib to plot a ternary diagram
     ** dataset : should be an array containing the values to plot, in the form [Ai, Bi, Ci] where A is the top corner, B is the left corner and C the right corner of the triangle (A = Si + Al, B = Fe, C = Mg for example)
         - Several datapoints should be within this array, where the entire dataset is in the form [[A1, B1, C1], [A2, B2, C2], ...[An, Bn, Cn]] for n datapoints. This form is fundamentally required for contours (populations of datapoints, not single datapoints).
@@ -31,7 +31,6 @@ def Ternary_Contour(dataset, type, NumLevels, ContLines, FigureSavePath, FileNam
     ** FigureSavePath : Path to folder location where figures should be saved. Must be in single quotations, example : '/Volumes/Samsung_T5/Experiment categories/Laser/Figures/'
     ** FileName : General name of files to be saved. Must be in single quotations, example : 'TEST_DataSet01'
     ** Colour : In quotations (such as 'Blues') the colour of the contour plot. Options available according to 'cmap' of matplotlib (https://matplotlib.org/stable/tutorials/colors/colormaps.html).
-    ** ContLines : Either 'y' (yes) or 'n' (no), plot or not to plot the lines seperating contour levels.
     ** WhiteCutoff : A value of data density used as the maximum density cutoff for colouring contour levels white (to make a white background). Default value is zero(0), which can be adjusted by trial-and-error (or by reading contour line values with ContourValues='y') to find an appropriate value such that the background is white.
     ** ContourValues : Either 'y' (yes) or 'n' (no), plot or not to plot the values defining each contour level (value is density value). Requires ContLines='y'.
     """
@@ -147,7 +146,7 @@ def Ternary_Contour(dataset, type, NumLevels, ContLines, FigureSavePath, FileNam
     if ContLines == 'y':
         cset_Ternary = plt.contour(xx_Ternary, yy_Ternary, f_Ternary, NumLevels, colors='k', alpha=1, linewidths = 0.5, linestyles = '-')
         if == 'y':
-            ax.clabel(cset, inline=1, fontsize=5)
+            ax.clabel(cset_Ternary, inline=1, fontsize=5)
     ax.axis('off')
     fig.savefig(FigureSavePath + FileName +  '_Ternary_Contour_' + type + 'Axis.pdf')
 
