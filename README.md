@@ -59,6 +59,9 @@ Associated Institute Link: https://umet.univ-lille.fr/MTP/index.php?lang=fr
 <!-- Related repositories -->
 ## Related repositories
 - plotting contours of compositions/metrics in 2D: https://github.com/DanHallatt/TwoDim_Contour
+- making a video of dynamic ternary contours, as a window slides through the series of data https://github.com/DanHallatt/Ternary_Contour_Vid
+- making a video of dynamic contours compositions/metrics in 2D, as a window slides through the series of data https://github.com/DanHallatt/TwoDim_Contour_Vid
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
