@@ -1,14 +1,17 @@
 # Ternary_Contour
-Plots a series of 3-dimensional data on a ternary diagram in the form of a contour map. Contours are based on 'spatial'-density of datapoints in the domain of the ternary plot.
+Plots a series of 3-dimensional data on a ternary diagram in the form of a contour map. Contours are based on 'spatial'-density of datapoints in the domain of the ternary plot. Multiple 'sets' of series of 3D data can be plotted, each with different colours of their contours.
 
 <!-- Options -->
 ## Options
  User can specify the following parameters when calling the function:
- - colour of the colour gradient, according to cmap available options (https://matplotlib.org/stable/tutorials/colors/colormaps.html).
- - the number of contours.
+ - choode the colours of the contour colours, according to cmap available options (https://matplotlib.org/stable/tutorials/colors/colormaps.html).
+ - choose number of contours.
  - to plot contour lines.
- - to plot contour level values within the contour levels.
- - the end-members of the plot, which must match the content of the input dataset (systems are: [Si+Al, Mg, Fe], [Si+Al, Mg+Fe, O], or [S, Ni, Fe]).
+ - to display values of the contour level values within the contour lines.
+ - to plot individual data.
+ - choose the end-members of the plot, which must match the content of the input dataset (systems are: [Si+Al, Mg, Fe], [Si+Al, Mg+Fe, O], or [S, Ni, Fe]).
+
+User can also easily adjust plotting preferences (such as text size and stoichiometric line colour) by adjusting the variables defined within the first lines of the function, if so wishes.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
