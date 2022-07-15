@@ -18,8 +18,6 @@ from scipy.interpolate import griddata
 
 #   A.1) "Tern_Base" : defines the base structure (axis names, stoichiometric reference lines, ect..) of the ternary plot.
 
-#   A.2) "triplot" : plots static ternary plot of raw data.
-
 def Ternary_Contour(dataset, type, Colour, NumLevels, ContourValues, ContLines, ContColourFill, DataPointDisp, FigureSavePath, FileName):
     """ Uses matplotlib to plot a ternary diagram
     ** dataset : in the form of a list of list [ [ [A11, B11, C11], ... [A1n, B1n, .. C1n] ], [ [A21, B21, C21], ... [A2n, B2n, .. C2n] ] , ... [ [Am1, Bm1, Cm1], ... [Amn, Bmn, .. Cmn] ] ], where n is the numer of datapoints in a given dataset and m is the number of datasets to plot individually. Even if m = 1, data must be in form of [ [A11, B11, .. C11], ... [A1n, B1n, C1n] ], where dataset[0] = [ [A11, B11, .. C11], ... [A1n, B1n, C1n] ] and not = [A11, B11, C11]. Note that for the ternary diagram, A is the top corner, B is the left corner, and C the right corner of the triangle (A = Si + Al, B = Fe, C = Mg for example)
