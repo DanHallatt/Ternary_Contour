@@ -38,7 +38,7 @@ def Ternary_Contour(dataset, type, Colour, NumLevels, ContourValues, ContLines, 
     DataPointSize = 0.5
     
     # MAKING TERNARY DIAGRAM OF CONTOURS:
-    fig, ax = Tern_Base()
+    fig, ax = Tern_Base(type)
     for k in range(0,len(dataset)):
         tri_y=[]
         tri_x=[]
