@@ -126,15 +126,12 @@ def Ternary_Contour(dataset, type, Colour, NumLevels, ContourValues, ContLines, 
             ContColour_Ternary = plt.contourf(xx_Ternary, yy_Ternary, f_Ternary, NumLevels, cmap=Colour[k], locator = ticker.MaxNLocator(prune = 'lower'))
         if ContLines == 'n' and ContourValues == 'y':
             ContourLineThickness = 0
-            print('should be printing contour lines with no thickness')
             cset_Ternary = plt.contour(xx_Ternary, yy_Ternary, f_Ternary, NumLevels, colors='k', alpha=1, linewidths = ContourLineThickness, linestyles = '-', locator = ticker.MaxNLocator(prune = 'lower')) # Drawing contour lines.
             if ContourValues == 'y':
-                print('should be printing contour levels')
                 ax.clabel(cset_Ternary, inline=1, fontsize=ContourLabelTextSize) # Labelling contour levels within the contour lines.
         if ContLines == 'y':
             cset_Ternary = plt.contour(xx_Ternary, yy_Ternary, f_Ternary, NumLevels, colors='k', alpha=1, linewidths = ContourLineThickness, linestyles = '-', locator = ticker.MaxNLocator(prune = 'lower')) # Drawing contour lines.
             if ContourValues == 'y':
-                print('should be printing contour levels')
                 ax.clabel(cset_Ternary, inline=1, fontsize=ContourLabelTextSize) # Labelling contour levels within the contour lines.
     ax.axis('off')
     fig.savefig(FigureSavePath + FileName +  '_Ternary_Contour_' + type + 'Axis.pdf')
