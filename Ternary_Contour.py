@@ -12,11 +12,7 @@ import matplotlib.tri as tri
 import scipy.stats as st
 from scipy.interpolate import griddata
 
-
-
-# A) "Ternary_Contour" : plots ternary contour plot, using a data in the form [[A1, B1, C1], [A2, B2, C2], ...]. Also plots a ternary plot of all of the raw data, for comparison/check of the contours.
-
-#   A.1) "Tern_Base" : defines the base structure (axis names, stoichiometric reference lines, ect..) of the ternary plot.
+from Tern_Base import Tern_Base
 
 def Ternary_Contour(dataset, type, Colour, NumLevels, ContourValues, ContLines, ContColourFill, DataPointDisp, FigureSavePath, FileName):
     """ Uses matplotlib to plot a ternary diagram
@@ -36,73 +32,13 @@ def Ternary_Contour(dataset, type, Colour, NumLevels, ContourValues, ContLines, 
     ** ContourValues : Either 'y' (yes) or 'n' (no), plot or not to plot the values defining each contour level (value is density value). Requires ContLines='y'.
     """
     
-    StoichTextSize = 11
-    StoichMarkerSize = 8
-    StoichLineWidth = 1
-    StoichLineColour = 'dimgrey'
-    StoichTextColour = 'dimgrey'
-    EndMemberTextSize = 13
-    AxisTickSize = 5
-    AxisLineWidth = 0.5
     ContourLabelTextSize = 0.5
     ContourLineThickness = 0.4
     ContourLineStyle = '-'
     DataPointSize = 0.5
     
-    def Tern_Base():
-        """
-        This is specifically the base style of the ternary plot.
-        - defines axis positions, stoichiometric reference lines/locations.
-        """
-        ax.plot([-0.5, -0.45, -0.4, -0.35, -0.3, -0.25, -0.2, -0.15, -0.1, -0.05, 0],  [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1], color = 'black', marker="_", markersize=AxisTickSize, linewidth=AxisLineWidth)
-        ax.plot([0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5],  [1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 0], color='black', marker="_",  markersize=AxisTickSize, linewidth=AxisLineWidth)
-        ax.plot([-0.5, -0.4, -0.3, -0.2, -0.1, 0, 0.1, 0.2, 0.3, 0.4, 0.5], [0,0,0,0,0,0,0,0,0,0,0], color='black', marker="|",  markersize=AxisTickSize, linewidth=AxisLineWidth)
-        
-        if type == 'silicate':
-            ax.plot([0.29, -0.29], [0.4, 0.4], linestyle=':', color=StoichLineColour, linewidth=StoichLineWidth)
-            ax.annotate('Serp', xy=(0.3, 0.4), xytext = (0.32, 0.39), size=StoichTextSize, color=StoichTextColour)
-            
-            ax.plot([0.21, -0.21], [0.57, 0.57], linestyle=':', color=StoichLineColour, linewidth=StoichLineWidth)
-            ax.annotate('Sap', xy=(0.21, 0.57), xytext = (0.23, 0.56), size=StoichTextSize, color=StoichTextColour)
-            
-            ax.plot([0.329, -0.329], [0.333, 0.333], linestyle='--', color=StoichLineColour, linewidth=StoichLineWidth)
-            ax.annotate('Ol', xy=(0.333, 0.333), xytext = (0.35, 0.32), size=StoichTextSize, color=StoichTextColour)
-            
-            ax.plot([0.24, -0.24], [0.5, 0.5], linestyle='--', color=StoichLineColour, linewidth=StoichLineWidth)
-            ax.annotate('Py', xy=(0.25, 0.50), xytext = (0.27, 0.49), size=StoichTextSize, color=StoichTextColour)
-            
-            ax.annotate('Si + Al', xy=(0.2, 1.), xytext = (-0.06, 1.03), size=EndMemberTextSize)
-            ax.annotate('Fe', xy=(-0.55,0.0), xytext = (-0.57,-0.03), size=EndMemberTextSize)
-            ax.annotate('Mg', xy=(0.55,0.0), xytext = (0.53, -0.03), size=EndMemberTextSize)
-
-        if type == 'sulfide':
-            ax.plot(-0.25, 0.5, 'ro', markersize=StoichMarkerSize)
-            ax.annotate('Troilite', xy=(-0.25, 0.5), xytext = (-0.4, 0.5), size=StoichTextSize, color=StoichTextColour)
-            
-            ax.plot(0.0, 0.47, 'bo', markersize=StoichMarkerSize)
-            ax.annotate('Pentlandite', xy=(0.0, 0.47), xytext = (0.03,0.47), size=StoichTextSize, color=StoichTextColour)
-            
-            ax.plot(-0.17,0.67, 'go',  markersize=StoichMarkerSize)
-            ax.annotate('Pyrite', xy=(-0.17,0.67), xytext = (-0.32,0.67), size=StoichTextSize, color=StoichTextColour)
-                            
-            ax.plot([-0.25, -0.22], [0.5, 0.56], color='purple', linewidth=StoichLineWidth)
-            ax.annotate('Pyrrhotite', xy=(-0.235, 0.55), xytext = (-0.42,0.55), size=StoichTextSize, color=StoichTextColour)
-                
-            ax.annotate('S', xy=(0., 1.0), xytext = (-0.05, 1.03), size=EndMemberTextSize)
-            ax.annotate('Fe', xy=(-0.55,0.0), xytext = (-0.56,-0.03), size=EndMemberTextSize)
-            ax.annotate('Ni', xy=(0.55,0.0), xytext = (0.52, -0.03), size=EndMemberTextSize)
-            
-        if type == 'silicateHydration':
-            ax.plot(-0.21, 0.142857, marker="3", color= StoichLineColour, markersize=StoichMarkerSize, alpha=0.5)
-            ax.annotate('Serp', xy=(-0.2, 0.14), xytext = (-0.235,0.05), size=StoichTextSize, color=StoichTextColour)
-            
-            ax.annotate('Si + Al', xy=(0.01, 1.0), xytext = (-0.06, 1.05), size=EndMemberTextSize)
-            ax.annotate('O', xy=(-0.55,0.), xytext = (-0.57,-0.03), size=EndMemberTextSize)
-            ax.annotate('Mg + Fe', xy=(0.55,0.0), xytext = (0.53, -0.03), size=EndMemberTextSize)
-    
     # MAKING TERNARY DIAGRAM OF CONTOURS:
-    fig, ax = plt.subplots()
-    Tern_Base()
+    fig, ax = Tern_Base()
     for k in range(0,len(dataset)):
         tri_y=[]
         tri_x=[]
@@ -123,16 +59,19 @@ def Ternary_Contour(dataset, type, Colour, NumLevels, ContourValues, ContLines, 
         kernel_Ternary = st.gaussian_kde(values_Ternary)
         f_Ternary = np.reshape(kernel_Ternary(positions_Ternary).T, xx_Ternary.shape)
         if ContColourFill == 'y':
-            ContColour_Ternary = plt.contourf(xx_Ternary, yy_Ternary, f_Ternary, NumLevels, cmap=Colour[k], locator = ticker.MaxNLocator(prune = 'lower'))
+            ContColour_Ternary = plt.contourf(xx_Ternary, yy_Ternary, f_Ternary, NumLevels, cmap=Colour[k], locator = ticker.MaxNLocator(prune = 'lower'), zorder=5)
         if ContLines == 'n' and ContourValues == 'y':
             ContourLineThickness = 0
-            cset_Ternary = plt.contour(xx_Ternary, yy_Ternary, f_Ternary, NumLevels, colors='k', alpha=1, linewidths = ContourLineThickness, linestyles = '-', locator = ticker.MaxNLocator(prune = 'lower')) # Drawing contour lines.
+            cset_Ternary = plt.contour(xx_Ternary, yy_Ternary, f_Ternary, NumLevels, colors='k', alpha=1, linewidths = ContourLineThickness, linestyles = ContourLineStyle, locator = ticker.MaxNLocator(prune = 'lower'), zorder=10) # Drawing contour lines.
             if ContourValues == 'y':
-                ax.clabel(cset_Ternary, inline=1, fontsize=ContourLabelTextSize) # Labelling contour levels within the contour lines.
+                ax.clabel(cset_Ternary, inline=1, fontsize=ContourLabelTextSize, zorder=15) # Labelling contour levels within the contour lines.
         if ContLines == 'y':
-            cset_Ternary = plt.contour(xx_Ternary, yy_Ternary, f_Ternary, NumLevels, colors='k', alpha=1, linewidths = ContourLineThickness, linestyles = '-', locator = ticker.MaxNLocator(prune = 'lower')) # Drawing contour lines.
+            cset_Ternary = plt.contour(xx_Ternary, yy_Ternary, f_Ternary, NumLevels, colors='k', alpha=1, linewidths = ContourLineThickness, linestyles = ContourLineStyle, locator = ticker.MaxNLocator(prune = 'lower'), zorder=10) # Drawing contour lines.
             if ContourValues == 'y':
-                ax.clabel(cset_Ternary, inline=1, fontsize=ContourLabelTextSize) # Labelling contour levels within the contour lines.
+                ax.clabel(cset_Ternary, inline=1, fontsize=ContourLabelTextSize, zorder=15) # Labelling contour levels within the contour lines.
+        if DataPointDisp=='y':
+            ax.scatter(tri_x, tri_y, color='black', alpha=1, s=DataPointSize, zorder=5)
+            
     ax.axis('off')
     fig.savefig(FigureSavePath + FileName +  '_Ternary_Contour_' + type + 'Axis.pdf')
 
