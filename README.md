@@ -18,6 +18,18 @@ User can also easily adjust plotting preferences (such as text size and stoichio
 <!-- Example output -->
 ## Example output
 
+It should be noted that all data must be in the form of a list (of the different groups of data with different contour colours) of lists (of multiple datapoints for each contour):
+
+<br />
+<div align="center">
+ 
+ [ [ [A11, B11, C11], ... [A1n, B1n, .. C1n] ], ... [ [Am1, Bm1, Cm1], ... [Amn, Bmn, .. Cmn] ] ]
+ 
+ </div>
+
+- where n is the numer of datapoints in a given dataset (a particular colour of contours) and m is the number of datasets to plot individually (the number of individual contour plots of differing colours). Even if m = 1, data must be in the form of [ [A11, B11, .. C11], ... [A1n, B1n, C1n] ], where dataset[0] = [ [A11, B11, .. C11], ... [A1n, B1n, C1n] ] and not = [A11, B11, C11]. Note that for the ternary diagram, A is the top corner, B is the left corner, and C the right corner of the triangle (A = Si + Al, B = Fe, C = Mg for example)
+
+
 <br />
 <div align="center">
 
@@ -26,10 +38,13 @@ User can also easily adjust plotting preferences (such as text size and stoichio
  </div>
 
 This figure was generated from the following user-specified options:
- - dataset = [[A1, B1, C1], [A2, B2, C2], ...[An, Bn, Cn]] where A = Si+Al, B = Fe, and C = Mg at.%
- - ContLines = 'n'
- - NumLevels = 8
- - Colour = 'Blues'
+ - dataset = [[[A11, B11, C11], ...[A1n, B1n, C1n]], [[A21, B21, C21], ...[A2n, B2n, C2n]]] where A = Si+Al, B = Fe, and C = Mg at.%
+ - ContLines = 'y'
+ - ContourValues = 'y'
+ - ContColourFill = 'y'
+ - DataPointDisp = 'y'
+ - NumLevels = 4
+ - Colour = ['Blues', 'Reds']
  - type = 'silicate'
  
 <p align="right">(<a href="#top">back to top</a>)</p>
