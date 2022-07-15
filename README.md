@@ -5,10 +5,11 @@ Plots a series of 3-dimensional data on a ternary diagram in the form of a conto
 ## Options
  User can specify the following parameters when calling the function:
  - choode the colours of the contour colours, according to cmap available options (https://matplotlib.org/stable/tutorials/colors/colormaps.html).
- - choose number of contours.
+ - choose the number of contours.
  - to plot contour lines.
  - to display values of the contour level values within the contour lines.
- - to plot individual data.
+ - to plot the individual datapoints of each dataset.
+ - to plot multiple datasets.
  - choose the end-members of the plot, which must match the content of the input dataset (systems are: [Si+Al, Mg, Fe], [Si+Al, Mg+Fe, O], or [S, Ni, Fe]).
 
 User can also easily adjust plotting preferences (such as text size and stoichiometric line colour) by adjusting the variables defined within the first lines of the function, if so wishes.
