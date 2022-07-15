@@ -124,7 +124,7 @@ def Ternary_Contour(dataset, type, Colour, NumLevels, ContourValues, ContLines, 
             if ContourValues == 'y':
                 ax.clabel(cset_Ternary, inline=1, fontsize=5) # Labelling contour levels within the contour lines.
         if DataPointDisp=='y':
-            ax.scatter(tri_x, tri_y, color='black', alpha=1, s=0.5)    ax.axis('off') # Plotting individual datapoints.
+            ax.scatter(tri_x, tri_y, color='black', alpha=1, s=0.5) # Plotting individual datapoints.
     ax.axis('off')
     fig.savefig(FigureSavePath + FileName +  '_Ternary_Contour_' + type + 'Axis.pdf')
 
