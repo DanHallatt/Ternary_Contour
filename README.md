@@ -37,16 +37,17 @@ It should be noted that all data must be in the form of a list (of the different
  
  </div>
 
-This figure was generated from the following user-specified options:
+This figures above were generated from the following user-specified options:
  - dataset = [[[A11, B11, C11], ...[A1n, B1n, C1n]], [[A21, B21, C21], ...[A2n, B2n, C2n]]] where A = Si+Al, B = Fe, and C = Mg at.%
      - red: data_a, blue: data_2
- - ContLines = 'y'
- - ContourValues = 'y'
- - ContColourFill = 'y'
- - DataPointDisp = 'y'
- - NumLevels = 4
+ - NumLevels = 10
  - Colour = ['Blues', 'Reds']
  - type = 'silicate'
+ - and differing data options for each sub-figure:
+     - A) ContLines = 'n',  ContourValues = 'n',  ContColourFill = 'y',  DataPointDisp = 'y'
+     - B) ContLines = 'y',  ContourValues = 'y',  ContColourFill = 'y',  DataPointDisp = 'n'
+     - C) ContLines = 'n',  ContourValues = 'n',  ContColourFill = 'y',  DataPointDisp = 'n'
+
  
 <p align="right">(<a href="#top">back to top</a>)</p>
 
