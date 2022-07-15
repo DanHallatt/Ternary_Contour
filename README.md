@@ -40,7 +40,7 @@ It should be noted that all data must be in the form of a list (of the different
 
 This figures above were generated from the following user-specified options:
  - dataset = [[[A11, B11, C11], ...[A1n, B1n, C1n]], [[A21, B21, C21], ...[A2n, B2n, C2n]]] where A = Si+Al, B = Fe, and C = Mg at.%
-     - red: data_a, blue: data_2
+     - red: data_1 (such as A11), blue: data_2 (such as A21)
  - NumLevels = 10
  - Colour = ['Blues', 'Reds']
  - type = 'silicate'
