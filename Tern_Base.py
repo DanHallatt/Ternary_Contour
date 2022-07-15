@@ -44,7 +44,7 @@ def Tern_Base(type):
         ax.plot([0.24, -0.24], [0.5, 0.5], linestyle='--', color=StoichLineColour, linewidth=StoichLineWidth, zorder=1)
         ax.annotate('Py', xy=(0.25, 0.50), xytext = (0.27, 0.49), size=StoichTextSize, color=StoichTextColour)
         
-        ax.annotate('Si + Al', xy=(0.2, 1.), xytext = (-0.06, 1.03), size=EndMemberTextSize)
+        ax.annotate('Si + Al', xy=(0.2, 1.), xytext = (-0.072, 1.03), size=EndMemberTextSize)
         ax.annotate('Fe', xy=(-0.55,0.0), xytext = (-0.57,-0.03), size=EndMemberTextSize)
         ax.annotate('Mg', xy=(0.55,0.0), xytext = (0.53, -0.03), size=EndMemberTextSize)
 
