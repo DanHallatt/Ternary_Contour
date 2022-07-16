@@ -4,11 +4,6 @@
 
 ### Added or Changed
 - Added this changelog :)
-- 
-
-### Removed
-
-- 
 
 ## v2.0.0
 
@@ -16,7 +11,3 @@
 - Added multi-dataset capability.
 - Added more user-defined options in both function calling and within function (plotting settings).
 - Added transparent background of plots.
-
-### Removed
-
-- 
