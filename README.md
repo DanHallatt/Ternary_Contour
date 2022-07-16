@@ -1,5 +1,5 @@
 # Ternary_Contour
-Plots a series of 3-dimensional data on a ternary diagram in the form of a contour map. Contours are based on 'spatial'-density of datapoints in the domain of the ternary plot. Multiple 'sets' of series of 3D data can be plotted, each with different colours of their contours.
+Plots a series of 3-dimensional data on a ternary diagram in the form of a contour map. Contours are based on 'spatial'-density of datapoints in the domain of the ternary plot. Multiple 'sets' of series of 3D data can be plotted on the same figure, each with different colours of their contour maps.
 
 * requires download of Tern_Base function as well.
 
