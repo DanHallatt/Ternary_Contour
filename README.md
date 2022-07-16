@@ -21,7 +21,7 @@ User can also easily adjust plotting preferences (such as text size and stoichio
 <!-- Example output -->
 ## Example output
 
-It should be noted that all data must be in the form of a list (of the different groups of data with different contour colours) of lists (of multiple datapoints for each contour):
+It should be noted that all data must be in the form of a list (of the different groups of data with different contour colours) of lists (of multiple datapoints for each contour) of lists (for each datapoint, for example [Si + Al, Mg, Fe]):
 
 <br />
 <div align="center">
