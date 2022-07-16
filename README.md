@@ -6,7 +6,7 @@ Plots a series of 3-dimensional data on a ternary diagram in the form of a conto
 <!-- Options -->
 ## Options
  User can specify the following parameters when calling the function:
- - choode the colours of the contour colours, according to cmap available options (https://matplotlib.org/stable/tutorials/colors/colormaps.html).
+ - choose the colours of the contour colours, according to cmap available options (https://matplotlib.org/stable/tutorials/colors/colormaps.html).
  - choose the number of contours.
  - to plot contour lines.
  - to display values of the contour level values within the contour lines.
