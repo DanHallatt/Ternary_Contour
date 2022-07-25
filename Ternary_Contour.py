@@ -14,7 +14,7 @@ from scipy.interpolate import griddata
 
 from Tern_Base import Tern_Base
 
-def Ternary_Contour(dataset, type, Colour, NumLevels, ContourValues, ContLines, ContColourFill, DataPointDisp, NormOption, FigureSavePath, FileName):
+def Ternary_Contour(dataset, type, Colour, ContourLevels, ContourValues, ContLines, ContColourFill, DataPointDisp, NormOption, FigureSavePath, FileName):
     """ Uses matplotlib to plot a ternary diagram
     ** dataset : in the form of a list of list [ [ [A11, B11, C11], ... [A1n, B1n, .. C1n] ], [ [A21, B21, C21], ... [A2n, B2n, .. C2n] ] , ... [ [Am1, Bm1, Cm1], ... [Amn, Bmn, .. Cmn] ] ], where n is the numer of datapoints in a given dataset and m is the number of datasets to plot individually. Even if m = 1, data must be in form of [ [A11, B11, .. C11], ... [A1n, B1n, C1n] ], where dataset[0] = [ [A11, B11, .. C11], ... [A1n, B1n, C1n] ] and not = [A11, B11, C11]. Note that for the ternary diagram, A is the top corner, B is the left corner, and C the right corner of the triangle (A = Si + Al, B = Fe, C = Mg for example)
         
@@ -22,7 +22,7 @@ def Ternary_Contour(dataset, type, Colour, NumLevels, ContourValues, ContLines, 
         
     ** type : Either 'silicate' [Si+Al, Mg, Fe], 'silicateHydration' [Si+Al, Mg+Fe, O], or 'sulfide' [S, Ni, Fe].
     ** Colour : In quotations a list of the colour of the contour plots in form of ['Blues', 'Reds', ect..]. Number of colours defined must = m. Options available according to 'cmap' of matplotlib (https://matplotlib.org/stable/tutorials/colors/colormaps.html). Still required to be defined even if ContColourFill == 'n'.
-    ** NumLevels: number of contour levels.
+    ** ContourLevels: if 'NormOption' = 'y', this is a string of values between (0,1]...not including 0 but including 1 which the contours should be defines. If 'NormOption' = 'n', this is simply the number of contours to be plotted (because the exact value of each contour will not be known before plotting).
     ** ContourValues : Either 'y' (yes) or 'n' (no), to plot the values defining each contour level (value is density value). Requires ContLines='y'.
     ** ContLines : Either 'y' (yes) or 'n' (no), plot or not to plot the lines seperating contour levels.
     ** ContColourFill : Either 'y' (yes) or 'n' (no), to fill contour values with the colours defined in 'Colour' list.
@@ -33,10 +33,11 @@ def Ternary_Contour(dataset, type, Colour, NumLevels, ContourValues, ContLines, 
     ** ContourValues : Either 'y' (yes) or 'n' (no), plot or not to plot the values defining each contour level (value is density value). Requires ContLines='y'.
     """
     
+    # Details of the style of the plot which the user can specify.
     ContourLabelTextSize = 0.7
-    ContourLineThickness = 0.2
+    ContourLineThickness = 0.1
     ContourLineStyle = '-'
-    ContourLineTransparency = 0.5
+    ContourLineTransparency = 1.0
     DataPointSize = 0.5
     DataPointColour = 'dim-grey'
     DataPointTransparency = 0.5
@@ -64,25 +65,47 @@ def Ternary_Contour(dataset, type, Colour, NumLevels, ContourValues, ContLines, 
             f = (f - f.min()) / (f.max() - f.min())
         f = f.reshape(xx.shape)
         
-        # Including all th possible user-specified combinations of displaying contour colour, lines, & contour values.
-        if ContColourFill == 'y':
-            ContColour = plt.contourf(xx, yy, f, NumLevels, cmap=Colour[k], locator = ticker.MaxNLocator(prune = 'lower', nbins=NumLevels), zorder=5)
-        if ContLines == 'n' and ContourValues == 'y':
-            ContourLineThickness = 0
-            if ContColourFill == 'y': # Gauruntee same levels as colour levels
-                cset = plt.contour(xx, yy, f, ContColour.levels, colors='k', alpha=ContourLineTransparency, linewidths = ContourLineThickness, linestyles = ContourLineStyle, zorder=10, extend='both') # Making invisible contour lines, simply to get their values.
-            else: #Making their own levels, without coloured levels.
-                cset = plt.contour(xx, yy, f, NumLevels, colors='k', alpha=ContourLineTransparency, linewidths = ContourLineThickness, linestyles = ContourLineStyle, locator = ticker.MaxNLocator(prune = 'lower', nbins=NumLevels), zorder=10) # Making invisible contour lines, simply to get their values.
-            ax.clabel(cset, inline=1, fontsize=ContourLabelTextSize, zorder=15) # Labelling contour levels within the contour lines.
-        if ContLines == 'y':
-            if ContColourFill == 'y': # Gauruntee same levels as colour levels.
-                cset = plt.contour(xx, yy, f, ContColour.levels, colors='k', alpha=ContourLineTransparency, linewidths = ContourLineThickness, linestyles = ContourLineStyle, zorder=10) # Drawing contour lines.
-            else:
-                cset = plt.contour(xx, yy, f, NumLevels, colors='k', alpha=ContourLineTransparency, linewidths = ContourLineThickness, linestyles = ContourLineStyle, locator = ticker.MaxNLocator(prune = 'lower', nbins=NumLevels), zorder=10) # Drawing contour lines.
-            if ContourValues == 'y':
+        if NormOption == 'n': #
+            # Including all the possible user-specified combinations of displaying contour colour, lines, & contour values.
+            if ContColourFill == 'y':
+                ContColour = plt.contourf(xx, yy, f, ContourLevels, cmap=Colour[k], locator = ticker.MaxNLocator(prune = 'lower', nbins=ContourLevels), zorder=5)
+            if ContLines == 'n' and ContourValues == 'y':
+                ContourLineThickness = 0
+                if ContColourFill == 'y': # Gauruntee same levels as colour levels
+                    cset = plt.contour(xx, yy, f, ContColour.levels, colors='k', alpha=ContourLineTransparency, linewidths = ContourLineThickness, linestyles = ContourLineStyle, zorder=10, extend='both') # Making invisible contour lines, simply to get their values.
+                else: #Making their own levels, without coloured levels.
+                    cset = plt.contour(xx, yy, f, ContourLevels, colors='k', alpha=ContourLineTransparency, linewidths = ContourLineThickness, linestyles = ContourLineStyle, locator = ticker.MaxNLocator(prune = 'lower', nbins=ContourLevels), zorder=10) # Making invisible contour lines, simply to get their values.
                 ax.clabel(cset, inline=1, fontsize=ContourLabelTextSize, zorder=15) # Labelling contour levels within the contour lines.
-        if DataPointDisp=='y':
-            ax.scatter(tri_x, tri_y, color=DataPointColour, alpha=DataPointTransparency, s=DataPointSize, zorder=5)
+            if ContLines == 'y':
+                if ContColourFill == 'y': # Gauruntee same levels as colour levels.
+                    cset = plt.contour(xx, yy, f, ContColour.levels, colors='k', alpha=ContourLineTransparency, linewidths = ContourLineThickness, linestyles = ContourLineStyle, zorder=10) # Drawing contour lines.
+                else:
+                    cset = plt.contour(xx, yy, f, ContourLevels, colors='k', alpha=ContourLineTransparency, linewidths = ContourLineThickness, linestyles = ContourLineStyle, locator = ticker.MaxNLocator(prune = 'lower', nbins=ContourLevels), zorder=10) # Drawing contour lines.
+                if ContourValues == 'y':
+                    ax.clabel(cset, inline=1, fontsize=ContourLabelTextSize, zorder=15) # Labelling contour levels within the contour lines.
+            if DataPointDisp=='y':
+                ax.scatter(tri_x, tri_y, color=DataPointColour, alpha=DataPointTransparency, s=DataPointSize, zorder=5)  
+            
+        elif NormOption == 'y': # repetition of above, but with different specifications for the contours, as required when normalization is performed (specifying the contour values to be plotted, and not the number of contours).
+            if ContColourFill == 'y':
+                ContColour = plt.contourf(xx, yy, f, levels=ContourLevels, cmap=Colour[k], locator = ticker.MaxNLocator(prune = 'lower', nbins=len(ContourLevels)), zorder=5)
+            if ContLines == 'n' and ContourValues == 'y':
+                ContourLineThickness = 0
+                if ContColourFill == 'y': # Gauruntee same levels as colour levels
+                    cset = plt.contour(xx, yy, f, ContColour.levels, colors='k', alpha=ContourLineTransparency, linewidths = ContourLineThickness, linestyles = ContourLineStyle, zorder=10, extend='both') # Making invisible contour lines, simply to get their values.
+                else: #Making their own levels, without coloured levels.
+                    cset = plt.contour(xx, yy, f, levels=ContourLevels, colors='k', alpha=ContourLineTransparency, linewidths = ContourLineThickness, linestyles = ContourLineStyle, locator = ticker.MaxNLocator(prune = 'lower', nbins=len(ContourLevels)), zorder=10) # Making invisible contour lines, simply to get their values.
+                ax.clabel(cset, inline=1, fontsize=ContourLabelTextSize, zorder=15) # Labelling contour levels within the contour lines.
+            if ContLines == 'y':
+                if ContColourFill == 'y': # Gauruntee same levels as colour levels.
+                    cset = plt.contour(xx, yy, f, ContColour.levels, colors='k', alpha=ContourLineTransparency, linewidths = ContourLineThickness, linestyles = ContourLineStyle, zorder=10) # Drawing contour lines.
+                else:
+                    cset = plt.contour(xx, yy, f, levels=ContourLevels, colors='k', alpha=ContourLineTransparency, linewidths = ContourLineThickness, linestyles = ContourLineStyle, locator = ticker.MaxNLocator(prune = 'lower', nbins=len(ContourLevels)), zorder=10) # Drawing contour lines.
+                if ContourValues == 'y':
+                    ax.clabel(cset, inline=1, fontsize=ContourLabelTextSize, zorder=15) # Labelling contour levels within the contour lines.
+            if DataPointDisp=='y':
+                ax.scatter(tri_x, tri_y, color=DataPointColour, alpha=DataPointTransparency, s=DataPointSize, zorder=5)
+                   
 
     ax.axis('off')
     fig.savefig(FigureSavePath + FileName +  '_Ternary_Contour_' + type + 'Axis.pdf')
