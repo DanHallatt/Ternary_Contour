@@ -43,14 +43,12 @@ It should be noted that all data must be in the form of a list (of the different
 This figures above were generated from the following user-specified options:
  - dataset = [[[A11, B11, C11], ...[A1n, B1n, C1n]], [[A21, B21, C21], ...[A2n, B2n, C2n]]] where A = Si+Al, B = Fe, and C = Mg at.%
      - red: data_1 (such as A11), blue: data_2 (such as A21)
- - ContourLevels = [0.1,0.25,0.5,0.68, 0.95, 1]
- - NormOption = 'y'
  - Colour = ['Blues', 'Reds']
  - type = 'silicate'
  - and differing data options for each sub-figure:
-     - A) ContLines = 'n',  ContourValues = 'n',  ContColourFill = 'y',  DataPointDisp = 'y'
-     - B) ContLines = 'y',  ContourValues = 'y',  ContColourFill = 'y',  DataPointDisp = 'n'
-     - C) ContLines = 'n',  ContourValues = 'n',  ContColourFill = 'y',  DataPointDisp = 'n'
+     - A) ContLines = 'n',  ContourValues = 'n',  ContColourFill = 'y',  DataPointDisp = 'y', NormOption = 'n', ContourLevels = 8
+     - B) ContLines = 'y',  ContourValues = 'y',  ContColourFill = 'y',  DataPointDisp = 'n', NormOption = 'y', ContourLevels = [0.1,0.25,0.5,0.68, 0.95, 1]
+     - C) ContLines = 'n',  ContourValues = 'n',  ContColourFill = 'y',  DataPointDisp = 'n', NormOption = 'n', ContourLevels = 8
 
  
 <p align="right">(<a href="#top">back to top</a>)</p>
