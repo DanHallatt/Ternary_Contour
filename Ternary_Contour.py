@@ -33,9 +33,10 @@ def Ternary_Contour(dataset, type, Colour, NumLevels, ContourValues, ContLines, 
     ** ContourValues : Either 'y' (yes) or 'n' (no), plot or not to plot the values defining each contour level (value is density value). Requires ContLines='y'.
     """
     
-    ContourLabelTextSize = 0.5
-    ContourLineThickness = 0.4
+    ContourLabelTextSize = 0.7
+    ContourLineThickness = 0.2
     ContourLineStyle = '-'
+    ContourLineTransparency = 0.5
     DataPointSize = 0.5
     DataPointColour = 'dim-grey'
     DataPointTransparency = 0.5
@@ -69,15 +70,15 @@ def Ternary_Contour(dataset, type, Colour, NumLevels, ContourValues, ContLines, 
         if ContLines == 'n' and ContourValues == 'y':
             ContourLineThickness = 0
             if ContColourFill == 'y': # Gauruntee same levels as colour levels
-                cset = plt.contour(xx, yy, f, ContColour.levels, colors='k', alpha=1, linewidths = ContourLineThickness, linestyles = ContourLineStyle, zorder=10, extend='both') # Drawing contour lines.
+                cset = plt.contour(xx, yy, f, ContColour.levels, colors='k', alpha=ContourLineTransparency, linewidths = ContourLineThickness, linestyles = ContourLineStyle, zorder=10, extend='both') # Making invisible contour lines, simply to get their values.
             else: #Making their own levels, without coloured levels.
-                cset = plt.contour(xx, yy, f, NumLevels, colors='k', alpha=1, linewidths = ContourLineThickness, linestyles = ContourLineStyle, locator = ticker.MaxNLocator(prune = 'lower', nbins=NumLevels), zorder=10) # Drawing contour lines.
+                cset = plt.contour(xx, yy, f, NumLevels, colors='k', alpha=ContourLineTransparency, linewidths = ContourLineThickness, linestyles = ContourLineStyle, locator = ticker.MaxNLocator(prune = 'lower', nbins=NumLevels), zorder=10) # Making invisible contour lines, simply to get their values.
             ax.clabel(cset, inline=1, fontsize=ContourLabelTextSize, zorder=15) # Labelling contour levels within the contour lines.
         if ContLines == 'y':
             if ContColourFill == 'y': # Gauruntee same levels as colour levels.
-                cset = plt.contour(xx, yy, f, ContColour.levels, colors='k', alpha=1, linewidths = ContourLineThickness, linestyles = ContourLineStyle, zorder=10) # Drawing contour lines.
+                cset = plt.contour(xx, yy, f, ContColour.levels, colors='k', alpha=ContourLineTransparency, linewidths = ContourLineThickness, linestyles = ContourLineStyle, zorder=10) # Drawing contour lines.
             else:
-                cset = plt.contour(xx, yy, f, NumLevels, colors='k', alpha=1, linewidths = ContourLineThickness, linestyles = ContourLineStyle, locator = ticker.MaxNLocator(prune = 'lower', nbins=NumLevels), zorder=10) # Drawing contour lines.
+                cset = plt.contour(xx, yy, f, NumLevels, colors='k', alpha=ContourLineTransparency, linewidths = ContourLineThickness, linestyles = ContourLineStyle, locator = ticker.MaxNLocator(prune = 'lower', nbins=NumLevels), zorder=10) # Drawing contour lines.
             if ContourValues == 'y':
                 ax.clabel(cset, inline=1, fontsize=ContourLabelTextSize, zorder=15) # Labelling contour levels within the contour lines.
         if DataPointDisp=='y':
@@ -85,4 +86,3 @@ def Ternary_Contour(dataset, type, Colour, NumLevels, ContourValues, ContLines, 
 
     ax.axis('off')
     fig.savefig(FigureSavePath + FileName +  '_Ternary_Contour_' + type + 'Axis.pdf')
-
