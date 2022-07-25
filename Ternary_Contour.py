@@ -27,7 +27,7 @@ def Ternary_Contour(dataset, type, Colour, ContourLevels, ContourValues, ContLin
     ** ContLines : Either 'y' (yes) or 'n' (no), plot or not to plot the lines seperating contour levels.
     ** ContColourFill : Either 'y' (yes) or 'n' (no), to fill contour values with the colours defined in 'Colour' list.
     ** DataPointDisp : Either 'y' (yes) or 'n' (no), to plot the individual datapoints in the ternary diagram.
-    ** NormOption : Either 'y' (yes) or 'n' (no), to normalize the KDE values to be within [0,1] domain. Allows for interpretation of contour lines to be limit beyond which samples are less likely to be found beyond than the most-likely area.
+    ** NormOption : Either 'y' (yes) or 'n' (no), to normalize the KDE values to be within [0,1] domain. Allows for interpretation of contour lines to be the limit beyond which samples are X times less likely to be found beyond them than the most-likely area.
     ** FigureSavePath : Path to folder location where figures should be saved. Must be in single quotations, example : '/Volumes/Samsung_T5/Experiment categories/Laser/Figures/'
     ** FileName : General name of files to be saved. Must be in single quotations, example : 'TEST_DataSet01'
     ** ContourValues : Either 'y' (yes) or 'n' (no), plot or not to plot the values defining each contour level (value is density value). Requires ContLines='y'.
